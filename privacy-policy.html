@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy - UNTITLED TECH</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style type="text/tailwindcss">
+        @theme {
+            --font-sans: 'Inter', sans-serif;
+            --font-mono: 'Space Mono', monospace;
+            --color-background: #000000;
+            --color-foreground: #ffffff;
+            --color-accent: #FF4D00;
+            --color-muted: #666666;
+            --color-border: #222222;
+        }
+
+        @layer base {
+            * {
+                @apply border-border;
+            }
+            body {
+                @apply bg-background text-foreground antialiased selection:bg-accent selection:text-white overflow-x-hidden;
+                font-feature-settings: "ss01", "ss02", "cv01", "cv11";
+            }
+        }
+
+        @layer components {
+            .container-px {
+                @apply px-6 md:px-12 lg:px-24;
+            }
+
+            .grid-lines {
+                background-image: linear-gradient(to right, rgba(255, 77, 0, 0.05) 1px, transparent 1px),
+                                linear-gradient(to bottom, rgba(255, 77, 0, 0.05) 1px, transparent 1px);
+                background-size: 60px 60px;
+            }
+
+            .scanline {
+                width: 100%;
+                height: 100px;
+                z-index: 10;
+                background: linear-gradient(0deg, rgba(0, 0, 0, 0) 0%, rgba(255, 77, 0, 0.02) 50%, rgba(0, 0, 0, 0) 100%);
+                opacity: 0.1;
+                position: absolute;
+                bottom: 100%;
+                animation: scanline 10s linear infinite;
+            }
+
+            @keyframes scanline {
+                0% { bottom: 100%; }
+                100% { bottom: -100px; }
+            }
+
+            .float-animation {
+                animation: float 6s ease-in-out infinite;
+            }
+
+            @keyframes float {
+                0%, 100% { transform: translateY(0px); }
+                50% { transform: translateY(-20px); }
+            }
+        }
+    </style>
+</head>
+<body class="font-sans">
+    <div class="fixed inset-0 pointer-events-none z-50">
+        <div class="scanline"></div>
+    </div>
+    
+    <div class="fixed inset-0 grid-lines pointer-events-none opacity-40"></div>
+    <div class="fixed inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(255,77,0,0.05),transparent_70%)] pointer-events-none"></div>
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 w-full z-[100] border-b border-white/5 bg-black/50 backdrop-blur-xl">
+        <div class="container-px py-8 flex justify-between items-center">
+            <a href="index.html" class="text-xl font-bold tracking-tighter flex items-center gap-2 hover:text-accent transition-colors">
+                <div class="w-2 h-2 bg-accent float-animation"></div>
+                UNTITLED<span class="text-muted font-normal">TECH</span>
+            </a>
+        </div>
+    </nav>
+
+    <main>
+        <!-- Header -->
+        <section class="pt-40 pb-20 container-px">
+            <div class="max-w-4xl">
+                <h1 class="text-6xl md:text-8xl font-bold tracking-tighter mb-8">Privacy Policy</h1>
+                <p class="text-lg text-muted">Last updated: January 2025</p>
+            </div>
+        </section>
+
+        <!-- Content -->
+        <section class="py-20 container-px border-t border-white/5">
+            <div class="max-w-4xl prose prose-invert">
+                <div class="space-y-12">
+                    <div>
+                        <h2 class="text-3xl font-bold mb-6 text-accent">Privacy Policy — untitled_tech</h2>
+                        <p class="text-lg text-muted leading-relaxed mb-6">
+                            At untitled_tech, we respect your privacy and keep data usage simple and transparent.
+                        </p>
+                    </div>
+
+                    <div>
+                        <h3 class="text-2xl font-bold mb-6">What We Collect</h3>
+                        <ul class="space-y-4 text-muted">
+                            <li class="flex gap-4">
+                                <span class="text-accent flex-shrink-0">→</span>
+                                <span>Basic account info (name, email)</span>
+                            </li>
+                            <li class="flex gap-4">
+                                <span class="text-accent flex-shrink-0">→</span>
+                                <span>Data you voluntarily provide</span>
+                            </li>
+                            <li class="flex gap-4">
+                                <span class="text-accent flex-shrink-0">→</span>
+                                <span>Limited technical data (device, usage, IP)</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h3 class="text-2xl font-bold mb-6">How We Use It</h3>
+                        <ul class="space-y-4 text-muted">
+                            <li class="flex gap-4">
+                                <span class="text-accent flex-shrink-0">→</span>
+                                <span>To run and improve our products</span>
+                            </li>
+                            <li class="flex gap-4">
+                                <span class="text-accent flex-shrink-0">→</span>
+                                <span>To fix bugs and enhance performance</span>
+                            </li>
+                            <li class="flex gap-4">
+                                <span class="text-accent flex-shrink-0">→</span>
+                                <span>To communicate important updates</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h3 class="text-2xl font-bold mb-6">We Do Not Sell or Trade Your Data</h3>
+                        <p class="text-lg text-muted leading-relaxed">
+                            Your information is yours alone. We never sell, trade, or share your data with third parties for marketing purposes.
+                        </p>
+                    </div>
+
+                    <div>
+                        <h3 class="text-2xl font-bold mb-6">AI Usage</h3>
+                        <p class="text-lg text-muted leading-relaxed">
+                            Some features use AI to analyze patterns and generate insights securely. All processing is done with your privacy as the priority.
+                        </p>
+                    </div>
+
+                    <div>
+                        <h3 class="text-2xl font-bold mb-6">Data Sharing</h3>
+                        <p class="text-lg text-muted leading-relaxed">
+                            We only share data with trusted providers when necessary to operate our services, or when legally required to do so.
+                        </p>
+                    </div>
+
+                    <div>
+                        <h3 class="text-2xl font-bold mb-6">Your Rights</h3>
+                        <p class="text-lg text-muted leading-relaxed mb-6">
+                            You have the right to:
+                        </p>
+                        <ul class="space-y-4 text-muted">
+                            <li class="flex gap-4">
+                                <span class="text-accent flex-shrink-0">→</span>
+                                <span>Request access to your data</span>
+                            </li>
+                            <li class="flex gap-4">
+                                <span class="text-accent flex-shrink-0">→</span>
+                                <span>Request correction of inaccurate data</span>
+                            </li>
+                            <li class="flex gap-4">
+                                <span class="text-accent flex-shrink-0">→</span>
+                                <span>Request deletion of your data</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h3 class="text-2xl font-bold mb-6">Security</h3>
+                        <p class="text-lg text-muted leading-relaxed">
+                            We use reasonable security measures to protect your information from unauthorized access, alteration, and disclosure.
+                        </p>
+                    </div>
+
+                    <div class="pt-12 border-t border-white/10">
+                        <h3 class="text-2xl font-bold mb-6">Contact</h3>
+                        <p class="text-lg text-muted leading-relaxed">
+                            For privacy-related questions, reach out to us at:
+                        </p>
+                        <p class="text-lg text-accent font-mono mt-4">
+                            untitledtechh@gmail.com
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="py-20 border-t border-white/5 container-px bg-black/40">
+        <div class="flex flex-col md:flex-row justify-between items-start gap-12">
+            <div>
+                <a href="index.html" class="text-2xl font-bold tracking-tighter mb-8 block">
+                    UNTITLED<span class="text-muted font-normal">TECH</span>
+                </a>
+                <p class="text-muted text-sm max-w-xs leading-relaxed">
+                    Quietly handling the boring stuff so you can focus on what matters.
+                </p>
+            </div>
+            <div class="grid grid-cols-2 md:grid-cols-3 gap-16">
+                <div class="flex flex-col gap-4">
+                    <span class="font-mono text-[10px] text-accent tracking-widest uppercase">Social</span>
+                    <a href="https://www.instagram.com/untitled_tech/" class="text-sm text-muted hover:text-white transition-colors">Instagram</a>
+                </div>
+                <div class="flex flex-col gap-4">
+                    <span class="font-mono text-[10px] text-accent tracking-widest uppercase">Legal</span>
+                    <a href="privacy-policy.html" class="text-sm text-muted hover:text-white transition-colors">Privacy Policy</a>
+                    <a href="terms-of-agreement.html" class="text-sm text-muted hover:text-white transition-colors">Terms of Agreement</a>
+                </div>
+                <div class="flex flex-col gap-4">
+                    <span class="font-mono text-[10px] text-accent tracking-widest uppercase">Contact</span>
+                    <a href="mailto:untitledtechh@gmail.com" class="text-sm text-muted hover:text-white transition-colors">untitledtechh@gmail.com</a>
+                </div>
+            </div>
+        </div>
+        <div class="mt-20 pt-10 border-t border-white/5 flex justify-between items-center text-[10px] font-mono text-muted tracking-widest uppercase">
+            <span>&copy; 2025 UNTITLED_TECH_LABS</span>
+            <span>v1.3.0_PRODUCTION</span>
+        </div>
+    </footer>
+</body>
+</html>

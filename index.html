@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UNTITLED TECH - AI that cuts the noise</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style type="text/tailwindcss">
+        @theme { --font-sans: 'Inter', sans-serif; --font-mono: 'Space Mono', monospace; --color-background: #000000; --color-foreground: #ffffff; --color-accent: #FF4D00; --color-muted: #666666; --color-border: #222222; } @layer base { * { @apply border-border;
+        } body { @apply bg-background text-foreground antialiased selection:bg-accent selection:text-white overflow-x-hidden; font-feature-settings: "ss01", "ss02", "cv01", "cv11"; } } @layer components { .container-px { @apply px-6 md:px-12 lg:px-24;
+        } .text-stroke { -webkit-text-stroke: 1px currentColor; -webkit-text-fill-color: transparent; } .reveal { @apply opacity-0 translate-y-12 transition-all duration-1000 ease-[cubic-bezier(0.2,0.8,0.2,1)]; } .reveal.active { @apply opacity-100 translate-y-0;
+        } .grid-lines { background-image: linear-gradient(to right, rgba(255, 77, 0, 0.05) 1px, transparent 1px), linear-gradient(to bottom, rgba(255, 77, 0, 0.05) 1px, transparent 1px); background-size: 60px 60px; } .scanline { width: 100%; height: 100px;
+        z-index: 10; background: linear-gradient(0deg, rgba(0, 0, 0, 0) 0%, rgba(255, 77, 0, 0.02) 50%, rgba(0, 0, 0, 0) 100%); opacity: 0.1; position: absolute; bottom: 100%; animation: scanline 10s linear infinite; } @keyframes scanline { 0% { bottom:
+        100%; } 100% { bottom: -100px; } } .glow-card { @apply relative overflow-hidden bg-black/40 backdrop-blur-md border border-white/5; } .glow-card::after { content: ''; @apply absolute inset-0 opacity-0 transition-opacity duration-500 pointer-events-none;
+        background: radial-gradient(600px circle at var(--mouse-x) var(--mouse-y), rgba(255, 77, 0, 0.1), transparent 40%); } .glow-card:hover::after { @apply opacity-100; } .glitch-text:hover { animation: glitch 0.3s cubic-bezier(.25,.46,.45,.94) both
+        infinite; } @keyframes glitch { 0% { transform: translate(0) } 20% { transform: translate(-2px, 2px) } 40% { transform: translate(-2px, -2px) } 60% { transform: translate(2px, 2px) } 80% { transform: translate(2px, -2px) } 100% { transform: translate(0)
+        } } .float-animation { animation: float 6s ease-in-out infinite; } @keyframes float { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-20px); } } .pulse-glow:hover { animation: pulse-glow 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        } @keyframes pulse-glow { 0%, 100% { box-shadow: 0 0 0 0 rgba(255, 77, 0, 0.4); } 50% { box-shadow: 0 0 0 20px rgba(255, 77, 0, 0); } } }
+    </style>
+</head>
+
+<body class="font-sans">
+    <div class="fixed inset-0 pointer-events-none z-50">
+        <div class="scanline"></div>
+    </div>
+
+    <div class="fixed inset-0 grid-lines pointer-events-none opacity-40"></div>
+    <div class="fixed inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(255,77,0,0.05),transparent_70%)] pointer-events-none"></div>
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 w-full z-[100] border-b border-white/5 bg-black/50 backdrop-blur-xl">
+        <div class="container-px py-8 flex justify-between items-center">
+            <a href="/" class="text-xl font-bold tracking-tighter flex items-center gap-2 hover:text-accent transition-colors">
+                <div class="w-2 h-2 bg-accent float-animation"></div>
+                UNTITLED<span class="text-muted font-normal">TECH</span>
+            </a>
+            <div class="hidden md:flex items-center gap-10 font-mono text-[10px] tracking-[0.3em] text-muted">
+                <a href="#vision" class="hover:text-accent transition-colors">VISION</a>
+                <a href="#mvp" class="hover:text-accent transition-colors">MVP</a>
+                <a href="#why" class="hover:text-accent transition-colors">WHY US</a>
+                <a href="#waitlist" class="px-6 py-2 border border-accent/30 text-accent hover:bg-accent hover:text-white transition-all">EARLY_ACCESS</a>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="min-h-screen flex flex-col justify-center container-px pt-40 pb-20 relative">
+            <div class="max-w-6xl">
+                <div class="flex items-center gap-4 mb-10 reveal">
+                    <div class="h-[1px] w-12 bg-accent"></div>
+                    <span class="font-mono text-[10px] tracking-[0.4em] uppercase text-accent">Stopping AI from wasting your time</span>
+                </div>
+
+                <h1 class="text-[clamp(3.5rem,12vw,10rem)] font-bold leading-[0.85] tracking-tighter mb-16 reveal" style="transition-delay: 200ms;">
+                    AI that cuts the noise.<br> Keeps the <span class="text-stroke italic glitch-text">work.</span>
+                </h1>
+
+                <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-12 reveal" style="transition-delay: 400ms;">
+                    <p class="text-xl md:text-2xl text-muted max-w-xl leading-relaxed">
+                        We build focused AI tools that <span class="text-foreground">simplify workflows</span>, reduce cognitive load, and help people work smarter—not longer.
+                    </p>
+                    <a href="#waitlist" class="group relative px-12 py-5 bg-accent text-white font-bold tracking-widest overflow-hidden hover:shadow-lg hover:shadow-accent/50 transition-all">
+                        <span class="relative z-10 font-mono text-sm">INITIALIZE_ACCESS</span>
+                        <div class="absolute inset-0 bg-white translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
+                        <span class="absolute inset-0 z-20 flex items-center justify-center text-black font-bold tracking-widest opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none font-mono text-sm">GET_STARTED</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Vision Section -->
+        <section id="vision" class="py-40 container-px border-y border-white/5 relative bg-black/20">
+            <div class="grid md:grid-cols-2 gap-24 items-center">
+                <div class="reveal">
+                    <span class="font-mono text-[10px] text-accent tracking-[0.4em] uppercase mb-8 block">01 // VISION</span>
+                    <h2 class="text-5xl md:text-7xl font-bold tracking-tight mb-10">Reduce cognitive overload in a world drowning in information.</h2>
+                    <p class="text-lg text-muted leading-relaxed mb-8">
+                        AI should feel invisible, supportive, and practical—quietly handling the mundane work so humans can focus on creativity, learning, and strategic decision-making.
+                    </p>
+                </div>
+                <div class="relative reveal" style="transition-delay: 300ms;">
+                    <div class="aspect-square glow-card p-1 pulse-glow">
+                        <div class="w-full h-full border border-white/10 flex items-center justify-center relative overflow-hidden group">
+                            <div class="absolute inset-0 opacity-20 group-hover:opacity-40 transition-opacity">
+                                <div class="absolute top-0 left-0 w-full h-full grid-lines"></div>
+                            </div>
+                            <div class="font-mono text-[8vw] md:text-[4vw] font-bold text-white/5 uppercase select-none tracking-tighter text-center">
+                                INVISIBLE<br>SUPPORT
+                            </div>
+                            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center gap-4">
+                                <div class="w-24 h-24 border border-accent/50 rounded-full animate-pulse"></div>
+                                <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-4 h-4 bg-accent"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- MVP / What we're building -->
+        <section id="mvp" class="py-40 container-px">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-24 gap-8 reveal">
+                <div class="max-w-2xl">
+                    <span class="font-mono text-[10px] text-accent tracking-[0.4em] uppercase mb-8 block">02 // BUILDING</span>
+                    <h2 class="text-5xl md:text-7xl font-bold tracking-tight">Zero fluff.<br>Instant value.</h2>
+                </div>
+                <p class="text-muted font-mono text-[10px] tracking-widest uppercase pb-4">Status: MVP_DEVELOPMENT_PHASE</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-1 reveal" style="transition-delay: 200ms;">
+                <div class="glow-card p-12 border-white/10 h-full pulse-glow">
+                    <div class="font-mono text-[10px] text-accent mb-12">SYSTEM_TASK_AUTOMATION</div>
+                    <h3 class="text-3xl font-bold mb-6">Repetitive tasks, handled.</h3>
+                    <p class="text-muted leading-relaxed">Lightweight AI tools designed to manage mundane operations so you can focus on what matters most.</p>
+                </div>
+                <div class="glow-card p-12 border-white/10 h-full bg-accent/5 border-accent/20 pulse-glow">
+                    <div class="font-mono text-[10px] text-accent mb-12">DATA_ORGANIZATION</div>
+                    <h3 class="text-3xl font-bold mb-6">Organize scattered info.</h3>
+                    <p class="text-muted leading-relaxed">Our MVP surfaces meaningful insights in real time, turning noise into actionable data you can use immediately.</p>
+                </div>
+                <div class="glow-card p-12 border-white/10 h-full pulse-glow">
+                    <div class="font-mono text-[10px] text-accent mb-12">WORKFLOW_INTEGRATION</div>
+                    <h3 class="text-3xl font-bold mb-6">Minimal setup, zero friction.</h3>
+                    <p class="text-muted leading-relaxed">Built to integrate naturally into your daily routine. It works where you work, seamlessly and invisibly.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Why Us -->
+        <section id="why" class="py-40 bg-white text-black overflow-hidden relative">
+            <div class="container-px relative z-10">
+                <div class="max-w-4xl reveal">
+                    <span class="font-mono text-[10px] text-black/40 tracking-[0.4em] uppercase mb-8 block font-bold">03 // WHY US</span>
+                    <h2 class="text-5xl md:text-8xl font-bold tracking-tighter mb-16 leading-[0.9]">
+                        Most AI tools try to impress.<br> We try to <span class="italic underline decoration-orange-500 decoration-4">work.</span>
+                    </h2>
+                    <div class="grid md:grid-cols-2 gap-12">
+                        <p class="text-xl font-medium leading-relaxed">
+                            We prioritize usability over buzzwords, speed over perfection, and real-world results over theoretical hype.
+                        </p>
+                        <p class="text-xl text-black/60 leading-relaxed">
+                            Every feature is shaped by actual user behavior. If it doesn't save time or enhance thinking—it doesn't ship.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="absolute -bottom-20 -right-20 font-bold text-[30vw] text-black/[0.03] select-none pointer-events-none tracking-tighter">
+                BUILD
+            </div>
+        </section>
+
+        <!-- Early Access Section -->
+        <!-- <section id="waitlist" class="py-40 container-px border-t border-white/5 relative">
+            <div class="max-w-5xl mx-auto reveal">
+                <div class="grid md:grid-cols-2 gap-16 items-center">
+                    <div>
+                        <span class="font-mono text-[10px] text-accent tracking-[0.4em] uppercase mb-8 block">EARLY_ACCESS</span>
+                        <h2 class="text-5xl md:text-7xl font-bold tracking-tighter mb-8 leading-[1.1]">Be first in line.</h2>
+                        <p class="text-lg text-muted mb-12 leading-relaxed max-w-lg">
+                            Early access means real influence. Your feedback shapes our roadmap. Your workflows shape our design. Join builders who demand better.
+                        </p>
+                        <div class="space-y-4 text-sm text-muted">
+                            <div class="flex gap-3 items-start">
+                                <div class="w-1 h-1 bg-accent mt-2 flex-shrink-0"></div>
+                                <span>Direct line to the team</span>
+                            </div>
+                            <div class="flex gap-3 items-start">
+                                <div class="w-1 h-1 bg-accent mt-2 flex-shrink-0"></div>
+                                <span>Shape the product roadmap</span>
+                            </div>
+                            <div class="flex gap-3 items-start">
+                                <div class="w-1 h-1 bg-accent mt-2 flex-shrink-0"></div>
+                                <span>Exclusive beta access to all features</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="relative">
+                        <form class="flex flex-col gap-4 glow-card p-8 border-white/10">
+                            <label class="font-mono text-[10px] text-accent tracking-[0.2em] uppercase">Request Early Access</label>
+                            <input type="email" placeholder="your@email.com" required 
+                                class="px-4 py-3 bg-white/5 border border-white/10 focus:outline-none focus:border-accent transition-colors font-sans text-sm text-foreground placeholder:text-muted/50">
+                            <input type="text" placeholder="company or project name" 
+                                class="px-4 py-3 bg-white/5 border border-white/10 focus:outline-none focus:border-accent transition-colors font-sans text-sm text-foreground placeholder:text-muted/50">
+                            <button type="submit" class="px-6 py-3 bg-accent text-white font-bold tracking-widest hover:bg-white hover:text-black transition-all font-mono text-sm mt-4">
+                                REQUEST_ACCESS
+                            </button>
+                            <div class="font-mono text-[8px] text-muted/60 tracking-wide">
+                                No spam. No sales calls. Just product updates.
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main> -->
+
+        <!-- Footer -->
+        <footer class="py-20 border-t border-white/5 container-px bg-black/40">
+            <div class="flex flex-col md:flex-row justify-between items-start gap-12">
+                <div>
+                    <a href="/" class="text-2xl font-bold tracking-tighter mb-8 block">
+                    UNTITLED<span class="text-muted font-normal">TECH</span>
+                </a>
+                    <p class="text-muted text-sm max-w-xs leading-relaxed">
+                        Quietly handling the boring stuff so you can focus on what matters.
+                    </p>
+                </div>
+                <div class="grid grid-cols-2 md:grid-cols-3 gap-16">
+                    <div class="flex flex-col gap-4">
+                        <span class="font-mono text-[10px] text-accent tracking-widest uppercase">Social</span>
+                        <a href="https://www.instagram.com/untitled_tech/" class="text-sm text-muted hover:text-white transition-colors">Instagram</a>
+                    </div>
+                    <div class="flex flex-col gap-4">
+                        <span class="font-mono text-[10px] text-accent tracking-widest uppercase">Legal</span>
+                        <a href="privacy-policy.html" class="text-sm text-muted hover:text-white transition-colors">Privacy Policy</a>
+                        <a href="terms-of-agreement.html" class="text-sm text-muted hover:text-white transition-colors">Terms of Agreement</a>
+                    </div>
+                    <div class="flex flex-col gap-4">
+                        <span class="font-mono text-[10px] text-accent tracking-widest uppercase">Contact</span>
+                        <a href="mailto:untitledtechh@gmail.com" class="text-sm text-muted hover:text-white transition-colors">untitledtechh@gmail.com</a>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-20 pt-10 border-t border-white/5 flex justify-between items-center text-[10px] font-mono text-muted tracking-widest uppercase">
+                <span>&copy; 2025 UNTITLED_TECH_LABS</span>
+                <span>v1.3.0_PRODUCTION</span>
+            </div>
+        </footer>
+
+        <script>
+            // Reveal Animations on Scroll
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+            // Smooth scroll
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        e.preventDefault();
+                        target.scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+
+            // Glow Card Mouse Tracking
+            document.querySelectorAll('.glow-card').forEach(card => {
+                card.addEventListener('mousemove', (e) => {
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    card.style.setProperty('--mouse-x', `${x}px`);
+                    card.style.setProperty('--mouse-y', `${y}px`);
+                });
+            });
+
+            // Form submission
+            document.querySelectorAll('form').forEach(form => {
+                form.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    alert('Thank you for your interest! We will be in touch soon.');
+                    form.reset();
+                });
+            });
+
+            // Console styling
+            console.log("%cUNTITLED TECH %cINITIALIZED", "color: #FF4D00; font-weight: bold; font-size: 20px;", "color: #666; font-size: 20px;");
+        </script>
+</body>
+
+</html>
