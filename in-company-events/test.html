@@ -1,0 +1,919 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UNTITLED.TECH - Candidate Assessment</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background: #0a0a0a;
+            color: #ffffff;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        /* Grid Background */
+        
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: linear-gradient(rgba(255, 77, 0, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 77, 0, 0.03) 1px, transparent 1px);
+            background-size: 60px 60px;
+            pointer-events: none;
+            z-index: 0;
+        }
+        
+        .container {
+            position: relative;
+            z-index: 1;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        /* Header */
+        
+        header {
+            border-bottom: 1px solid rgba(255, 77, 0, 0.15);
+            padding: 20px 48px;
+            position: relative;
+            z-index: 50;
+            background: rgba(10, 10, 10, 0.99);
+            backdrop-filter: blur(10px);
+        }
+        
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 15px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            color: #ffffff;
+        }
+        
+        .logo span {
+            color: #FF4D00;
+        }
+        
+        .header-info {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+        
+        .header-status {
+            font-size: 9px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            color: #666;
+            text-transform: uppercase;
+        }
+        /* Main Content */
+        
+        main {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 60px 48px;
+        }
+        
+        .content {
+            max-width: 1400px;
+            width: 100%;
+        }
+        /* Selection Screen */
+        
+        .screen {
+            animation: fadeIn 0.8s ease-out;
+        }
+        
+        .screen.hidden {
+            display: none;
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .hero-section {
+            margin-bottom: 60px;
+        }
+        
+        .screen-header {
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .screen-header::before {
+            content: '';
+            width: 40px;
+            height: 2px;
+            background: linear-gradient(90deg, #FF4D00 0%, transparent 100%);
+        }
+        
+        .screen-header span {
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            color: #FF4D00;
+            text-transform: uppercase;
+        }
+        
+        h1 {
+            font-size: clamp(3rem, 9vw, 5rem);
+            font-weight: 700;
+            margin-bottom: 16px;
+            line-height: 1.1;
+            letter-spacing: -1px;
+            font-family: 'Playfair Display', serif;
+        }
+        
+        h1 span {
+            color: #FF4D00;
+            display: block;
+        }
+        
+        .subtitle {
+            font-size: 16px;
+            color: #bbb;
+            margin-bottom: 20px;
+            max-width: 800px;
+            line-height: 1.8;
+            font-weight: 400;
+        }
+        
+        .info-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin-bottom: 48px;
+        }
+        
+        .info-card {
+            background: rgba(255, 77, 0, 0.05);
+            border: 1px solid rgba(255, 77, 0, 0.2);
+            border-radius: 8px;
+            padding: 16px;
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+        }
+        
+        .info-card-icon {
+            font-size: 20px;
+            margin-top: 2px;
+            flex-shrink: 0;
+        }
+        
+        .info-card-content h3 {
+            font-size: 12px;
+            font-weight: 700;
+            color: #FF4D00;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 4px;
+        }
+        
+        .info-card-content p {
+            font-size: 12px;
+            color: #999;
+            line-height: 1.5;
+        }
+        /* Team Filter Tabs */
+        
+        .team-filter {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+        
+        .filter-btn {
+            padding: 10px 24px;
+            border: 1px solid rgba(255, 77, 0, 0.2);
+            background: transparent;
+            color: #999;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            cursor: pointer;
+            border-radius: 6px;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            font-family: 'Inter', sans-serif;
+            position: relative;
+        }
+        
+        .filter-btn::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #FF4D00;
+            transition: width 0.3s;
+        }
+        
+        .filter-btn:hover::after,
+        .filter-btn.active::after {
+            width: 100%;
+        }
+        
+        .filter-btn:hover,
+        .filter-btn.active {
+            border-color: #FF4D00;
+            color: #FF4D00;
+            background: rgba(255, 77, 0, 0.08);
+        }
+        /* Candidates Grid */
+        
+        .candidates-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 24px;
+            margin-bottom: 40px;
+        }
+        
+        .candidate-card {
+            background: linear-gradient(135deg, rgba(255, 77, 0, 0.06) 0%, rgba(255, 77, 0, 0.01) 100%);
+            border: 1px solid rgba(255, 77, 0, 0.25);
+            border-radius: 12px;
+            padding: 28px;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            min-height: 240px;
+            group: 'card';
+        }
+        
+        .candidate-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 50% 0%, rgba(255, 77, 0, 0.15) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.4s;
+            pointer-events: none;
+        }
+        
+        .candidate-card:hover::before {
+            opacity: 1;
+        }
+        
+        .candidate-card:hover {
+            border-color: rgba(255, 77, 0, 0.5);
+            background: linear-gradient(135deg, rgba(255, 77, 0, 0.12) 0%, rgba(255, 77, 0, 0.03) 100%);
+            transform: translateY(-8px);
+            box-shadow: 0 24px 60px rgba(255, 77, 0, 0.2);
+        }
+        
+        .candidate-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 8px;
+            background: linear-gradient(135deg, #FF4D00 0%, #FF7A33 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 12px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .candidate-tag {
+            display: inline-block;
+            font-size: 8px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            color: #FF4D00;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+            padding: 6px 10px;
+            border: 1px solid rgba(255, 77, 0, 0.3);
+            border-radius: 4px;
+            background: rgba(255, 77, 0, 0.08);
+            position: relative;
+            z-index: 2;
+        }
+        
+        .candidate-name {
+            font-size: 18px;
+            font-weight: 600;
+            color: #ffffff;
+            margin-bottom: auto;
+            line-height: 1.3;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .candidate-cta {
+            font-size: 10px;
+            color: #777;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            margin-top: 12px;
+            position: relative;
+            z-index: 2;
+            transition: color 0.3s;
+        }
+        
+        .candidate-card:hover .candidate-cta {
+            color: #FF4D00;
+        }
+        /* Confirmation Screen */
+        
+        .confirmation-wrapper {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .confirmation-card {
+            background: linear-gradient(135deg, rgba(255, 77, 0, 0.09) 0%, rgba(255, 77, 0, 0.01) 100%);
+            border: 1px solid rgba(255, 77, 0, 0.3);
+            border-radius: 16px;
+            padding: 64px 48px;
+            margin-bottom: 48px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .confirmation-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(255, 77, 0, 0.12) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        
+        .confirmation-icon {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 32px;
+            background: linear-gradient(135deg, #FF4D00 0%, #FF7A33 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 56px;
+            color: #ffffff;
+            box-shadow: 0 24px 60px rgba(255, 77, 0, 0.3);
+            position: relative;
+            z-index: 1;
+            animation: pulse-scale 2.5s ease-in-out infinite;
+        }
+        
+        @keyframes pulse-scale {
+            0%,
+            100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.08);
+            }
+        }
+        
+        .confirmation-title {
+            font-size: clamp(2rem, 7vw, 3.5rem);
+            font-weight: 700;
+            margin-bottom: 16px;
+            letter-spacing: -0.5px;
+            font-family: 'Playfair Display', serif;
+            position: relative;
+            z-index: 1;
+            line-height: 1.2;
+        }
+        
+        .confirmation-title .name {
+            color: #FF4D00;
+            display: block;
+        }
+        
+        .confirmation-team {
+            font-size: 11px;
+            color: #FF4D00;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 32px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .confirmation-messages {
+            background: rgba(255, 77, 0, 0.07);
+            border-left: 4px solid #FF4D00;
+            padding: 24px;
+            margin-bottom: 32px;
+            border-radius: 8px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .confirmation-message-title {
+            font-size: 11px;
+            font-weight: 700;
+            color: #FF4D00;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 12px;
+        }
+        
+        .confirmation-message {
+            font-size: 15px;
+            color: #ddd;
+            line-height: 1.8;
+            font-style: italic;
+        }
+        
+        .info-boxes {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 16px;
+            margin-bottom: 32px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .info-box {
+            background: rgba(255, 77, 0, 0.05);
+            border: 1px solid rgba(255, 77, 0, 0.2);
+            padding: 20px;
+            border-radius: 8px;
+        }
+        
+        .info-box-title {
+            font-size: 10px;
+            font-weight: 700;
+            color: #FF4D00;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 8px;
+        }
+        
+        .info-box-content {
+            font-size: 13px;
+            color: #bbb;
+            line-height: 1.6;
+        }
+        
+        .submission-note {
+            background: linear-gradient(135deg, rgba(255, 77, 0, 0.1) 0%, rgba(255, 77, 0, 0.02) 100%);
+            border: 1px solid rgba(255, 77, 0, 0.25);
+            padding: 28px;
+            margin-bottom: 32px;
+            border-radius: 12px;
+            position: relative;
+            z-index: 1;
+            text-align: left;
+        }
+        
+        .submission-note-title {
+            font-size: 12px;
+            font-weight: 700;
+            color: #FF4D00;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 12px;
+        }
+        
+        .submission-steps {
+            display: grid;
+            gap: 12px;
+        }
+        
+        .submission-step {
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+        }
+        
+        .step-number {
+            font-size: 11px;
+            font-weight: 700;
+            color: #FF4D00;
+            min-width: 24px;
+            height: 24px;
+            border: 1px solid rgba(255, 77, 0, 0.4);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 1px;
+        }
+        
+        .submission-step-text {
+            font-size: 13px;
+            color: #aaa;
+            line-height: 1.6;
+        }
+        
+        .drive-link {
+            color: #FF4D00;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+        
+        .drive-link:hover {
+            color: #FF7A33;
+            text-decoration: underline;
+        }
+        
+        .button-group {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .btn {
+            padding: 14px 40px;
+            border: 1px solid rgba(255, 77, 0, 0.4);
+            background: transparent;
+            color: #ffffff;
+            font-size: 11px;
+            font-weight: 700;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            text-decoration: none;
+            display: inline-block;
+            min-width: 200px;
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #FF4D00 0%, #FF7A33 100%);
+            border-color: #FF4D00;
+            color: #000;
+            font-weight: 700;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 24px 50px rgba(255, 77, 0, 0.4);
+        }
+        
+        .btn-secondary {
+            border-color: rgba(255, 77, 0, 0.4);
+            color: #999;
+        }
+        
+        .btn-secondary:hover {
+            border-color: rgba(255, 77, 0, 0.7);
+            color: #FF4D00;
+            background: rgba(255, 77, 0, 0.1);
+        }
+        /* Footer */
+        
+        footer {
+            border-top: 1px solid rgba(255, 77, 0, 0.1);
+            padding: 40px 48px;
+            text-align: center;
+            color: #666;
+            font-size: 11px;
+            background: rgba(10, 10, 10, 0.5);
+        }
+        /* Responsive */
+        
+        @media (max-width: 768px) {
+            header {
+                padding: 16px 20px;
+            }
+            main {
+                padding: 40px 20px;
+            }
+            h1 {
+                font-size: 2.2rem;
+            }
+            .candidates-grid {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+            .info-cards {
+                grid-template-columns: 1fr;
+            }
+            .team-filter {
+                flex-direction: column;
+            }
+            .filter-btn {
+                width: 100%;
+            }
+            .button-group {
+                flex-direction: column;
+            }
+            .btn {
+                min-width: 100%;
+            }
+            .confirmation-card {
+                padding: 40px 24px;
+            }
+            .confirmation-icon {
+                width: 80px;
+                height: 80px;
+                font-size: 40px;
+                margin-bottom: 24px;
+            }
+            .info-boxes {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <div class="header-content">
+                <div class="logo">UNTITLED<span>.</span>TECH</div>
+                <div class="header-status">ASSESSMENT_PORTAL</div>
+            </div>
+        </header>
+
+        <main>
+            <div class="content">
+                <!-- Selection Screen -->
+                <div class="screen" id="selectionScreen">
+                    <div class="hero-section">
+                        <div class="screen-header">
+                            <span>Assessment Portal</span>
+                        </div>
+                        <h1>Select Your<br><span>Assessment</span></h1>
+                        <p class="subtitle">Find your name below to access your personalized test. Only candidates in your team can view assessments for your group.</p>
+                    </div>
+
+                    <div class="info-cards">
+                        <div class="info-card">
+                            <div class="info-card-icon">🔒</div>
+                            <div class="info-card-content">
+                                <h3>Secure Access</h3>
+                                <p>Team-based viewing</p>
+                            </div>
+                        </div>
+                        <div class="info-card">
+                            <div class="info-card-icon">📄</div>
+                            <div class="info-card-content">
+                                <h3>Ready to Download</h3>
+                                <p>Get your test file</p>
+                            </div>
+                        </div>
+                        <div class="info-card">
+                            <div class="info-card-icon">📤</div>
+                            <div class="info-card-content">
+                                <h3>Easy Submission</h3>
+                                <p>Submit to drive</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="team-filter" id="teamFilter"></div>
+                    <div class="candidates-grid" id="candidatesGrid"></div>
+                </div>
+
+                <!-- Confirmation Screen -->
+                <div class="screen hidden" id="confirmationScreen">
+                    <div class="confirmation-wrapper">
+                        <div class="confirmation-card">
+                            <div class="confirmation-icon">✨</div>
+                            <h2 class="confirmation-title">All the best,<br><span class="name" id="candidateName"></span></h2>
+                            <p class="confirmation-team" id="candidateTeam"></p>
+
+                            <div class="confirmation-messages">
+                                <div class="confirmation-message-title">A Personalized Message for You</div>
+                                <div class="confirmation-message" id="personalMessage"></div>
+                            </div>
+
+                            <div class="info-boxes">
+                                <div class="info-box">
+                                    <div class="info-box-title">Test Type</div>
+                                    <div class="info-box-content" id="testTypeDisplay">Assessment</div>
+                                </div>
+                                <div class="info-box">
+                                    <div class="info-box-title">Team</div>
+                                    <div class="info-box-content" id="teamDisplay">Team</div>
+                                </div>
+                                <div class="info-box">
+                                    <div class="info-box-title">Status</div>
+                                    <div class="info-box-content">Ready to Start</div>
+                                </div>
+                            </div>
+
+                            <div class="submission-note">
+                                <div class="submission-note-title">How to Submit Your Assessment</div>
+                                <div class="submission-steps">
+                                    <div class="submission-step">
+                                        <div class="step-number">1</div>
+                                        <div class="submission-step-text">Download your test paper using the button below</div>
+                                    </div>
+                                    <div class="submission-step">
+                                        <div class="step-number">2</div>
+                                        <div class="submission-step-text">Complete all questions carefully and thoroughly</div>
+                                    </div>
+                                    <div class="submission-step">
+                                        <div class="step-number">3</div>
+                                        <div class="submission-step-text">Upload your completed test to: <a href="https://drive.google.com/drive/folders/1v7YxB8g4tyCP16jEO4MaGWme-e9kBxml?usp=sharing" target="_blank" class="drive-link">Submission Folder</a></div>
+                                    </div>
+                                    <div class="submission-step">
+                                        <div class="step-number">4</div>
+                                        <div class="submission-step-text">Ensure your file is named properly: YourName_Assessment.docx</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="button-group">
+                            <a href="#" class="btn btn-primary" id="downloadBtn">DOWNLOAD TEST PAPER</a>
+                            <button class="btn btn-secondary" onclick="goBack()">BACK TO SELECTION</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <p>&copy; 2025 UNTITLED.TECH — Candidate Assessment Portal</p>
+        </footer>
+    </div>
+
+    <script>
+        const candidates = [{
+            name: 'Virat Saini',
+            team: 'AI Development',
+            file: 'ai.docx',
+            message: 'You\'ve demonstrated exceptional problem-solving abilities. This assessment is your opportunity to showcase your deep understanding of AI concepts. Trust your knowledge, stay focused, and let your expertise shine. You are more than prepared for this!'
+        }, {
+            name: 'Chaitanya Batra',
+            team: 'AI Development',
+            file: 'ai.docx',
+            message: 'Your analytical mindset and technical depth are truly impressive. This is your moment to demonstrate why you\'re a valuable part of our AI team. Approach each question with confidence and precision. You\'ve got everything it takes!'
+        }, {
+            name: 'Suyash Saxena',
+            team: 'AI Development',
+            file: 'ai.docx',
+            message: 'Your commitment to continuous learning and innovation is commendable. The questions ahead will challenge you, but we know you\'re ready. Take your time, think critically, and deliver the best version of your work. Believe in yourself!'
+        }, {
+            name: 'Bhvesh',
+            team: 'AI Development',
+            file: 'ai.docx',
+            message: 'As a skilled developer working across multiple domains, you bring a unique perspective. Your versatility and adaptability will serve you well. Show us what makes you stand out. We\'re confident in your abilities!'
+        }, {
+            name: 'Poornav Sharaswat',
+            team: 'AI Development',
+            file: 'ai.docx',
+            message: 'Your passion for artificial intelligence is evident in everything you do. This assessment is your canvas—paint it with your knowledge, creativity, and determination. Every solution you provide will reflect your growth. Go make us proud!'
+        }, {
+            name: 'Harshil',
+            team: 'AI Development',
+            file: 'ai.docx',
+            message: 'The dedication you\'ve shown in your learning journey has been remarkable. Your consistent effort has prepared you well for this moment. Trust your instincts, apply what you\'ve learned, and deliver your absolute best. You\'ve earned this!'
+        }, {
+            name: 'Ishaan Gupta',
+            team: 'AI Development',
+            file: 'ai.docx',
+            message: 'Your expertise in building intelligent systems is truly exceptional. The technical challenges ahead are designed to showcase exactly what you\'re great at. Approach them with the same confidence and precision you bring to your projects. This is your stage!'
+        }, {
+            name: 'Aradhya Thapar',
+            team: 'Deployment',
+            file: 'deploy.docx',
+            message: 'Your meticulous attention to detail and system architecture knowledge are invaluable. This assessment will reveal the depth of your deployment expertise. Take pride in your work and execute with the excellence we know you\'re capable of. You\'re ready!'
+        }, {
+            name: 'Aditi Tamta',
+            team: 'Deployment',
+            file: 'deploy.docx',
+            message: 'Your understanding of deployment pipelines and infrastructure is impressive. This is your chance to demonstrate the systematic thinking and problem-solving that define your work. Approach each scenario with confidence. We believe in you!'
+        }, {
+            name: 'Vaibhavi',
+            team: 'Deployment',
+            file: 'deploy.docx',
+            message: 'Your solid grasp of deployment practices and cloud infrastructure is evident. This assessment will highlight your practical knowledge and strategic thinking. Show us the same excellence and attention to detail that makes you valuable to our team. You\'ve prepared well!'
+        }];
+
+        let selectedCandidate = null;
+        let currentTeamFilter = 'ALL';
+
+        function capitalizeFirstWord(name) {
+            const words = name.toLowerCase().split(' ');
+            words[0] = words[0].charAt(0).toUpperCase() + words[0].slice(1);
+            return words.join(' ');
+        }
+
+        function initializeTeamFilter() {
+            const teams = ['ALL', 'AI Development', 'Deployment'];
+            const filterContainer = document.getElementById('teamFilter');
+
+            teams.forEach(team => {
+                const btn = document.createElement('button');
+                btn.className = 'filter-btn' + (team === 'ALL' ? ' active' : '');
+                btn.textContent = team;
+                btn.onclick = () => filterByTeam(team, btn);
+                filterContainer.appendChild(btn);
+            });
+        }
+
+        function filterByTeam(team, btn) {
+            currentTeamFilter = team;
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            renderCandidates();
+        }
+
+        function renderCandidates() {
+            const grid = document.getElementById('candidatesGrid');
+            grid.innerHTML = '';
+
+            const filtered = currentTeamFilter === 'ALL' ?
+                candidates :
+                candidates.filter(c => c.team === currentTeamFilter);
+
+            filtered.forEach((candidate) => {
+                const card = document.createElement('button');
+                card.className = 'candidate-card';
+                card.type = 'button';
+                card.onclick = () => selectCandidate(candidate);
+                const displayName = capitalizeFirstWord(candidate.name);
+                const initials = displayName.split(' ').map(n => n[0]).join('').substring(0, 2);
+                card.innerHTML = `
+                    <div class="candidate-avatar">${initials}</div>
+                    <div class="candidate-tag">${candidate.team}</div>
+                    <div class="candidate-name">${displayName}</div>
+                    <div class="candidate-cta">Begin Assessment →</div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        function selectCandidate(candidate) {
+            selectedCandidate = candidate;
+            document.getElementById('selectionScreen').classList.add('hidden');
+            document.getElementById('confirmationScreen').classList.remove('hidden');
+
+            const displayName = capitalizeFirstWord(candidate.name);
+            document.getElementById('candidateName').textContent = displayName;
+            document.getElementById('candidateTeam').textContent = candidate.team;
+            document.getElementById('personalMessage').textContent = candidate.message;
+            document.getElementById('testTypeDisplay').textContent = candidate.team + ' Assessment';
+            document.getElementById('teamDisplay').textContent = candidate.team;
+
+            const downloadBtn = document.getElementById('downloadBtn');
+            downloadBtn.href = candidate.file;
+            downloadBtn.download = candidate.file;
+        }
+
+        function goBack() {
+            selectedCandidate = null;
+            document.getElementById('confirmationScreen').classList.add('hidden');
+            document.getElementById('selectionScreen').classList.remove('hidden');
+        }
+
+        // Initialize
+        initializeTeamFilter();
+        renderCandidates();
+    </script>
+</body>
+
+</html>
